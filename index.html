@@ -1,3 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Special Question 💖</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background-color: #ffe6f0;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 100px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        #noBtn {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Damayanthy Tea kudike povoma?😁💕</h1>
+
+<form action="https://formspree.io/f/mjgprrqe" method="POST">
+    <input type="hidden" name="answer" id="answer">
+
+    <button type="submit" onclick="setAnswer('Yes')">Povom😊💖</button>
+    <button type="button" id="noBtn">No 😢</button>
+</form>
+
+<p id="response"></p>
+
+<!-- Sound -->
+<audio id="runSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
+
 <script>
 function setAnswer(ans) {
     document.getElementById("answer").value = ans;
@@ -7,11 +52,13 @@ function setAnswer(ans) {
 const noBtn = document.getElementById("noBtn");
 const sound = document.getElementById("runSound");
 
+let scale = 1;
+
 const messages = [
     "No 😢",
-    "Damayanthy are you sure? 🥺",
+    "Are you sure? 🥺",
     "Think again 😭",
-    "Damayanthyyyy?? 🥺",
+    "Please?? 🥺",
     "Don't do this 😩",
     "Last chance 😳"
 ];
@@ -30,7 +77,12 @@ noBtn.addEventListener("mouseover", function() {
     sound.currentTime = 0;
     sound.play();
 
-    // Change text only (NO SIZE CHANGE)
+    // Shrink button
+    scale -= 0.1;
+    if (scale < 0.4) scale = 0.4;
+    noBtn.style.transform = `scale(${scale})`;
+
+    // Change text
     msgIndex++;
     if (msgIndex >= messages.length) msgIndex = messages.length - 1;
     noBtn.innerText = messages[msgIndex];
@@ -41,3 +93,6 @@ noBtn.addEventListener("click", function() {
     alert("Nice try 😏 You can't say no!");
 });
 </script>
+
+</body>
+</html>
