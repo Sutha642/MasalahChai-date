@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Special Question 💖</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background-color: #ffe6f0;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 100px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        #noBtn {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Damayanthy Tea kudike povom?😁💕</h1>
+
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <input type="hidden" name="answer" id="answer">
+
+    <button type="submit" onclick="setAnswer('Yes')">Povom😊💖</button>
+    <button type="button" id="noBtn">No 😢</button>
+</form>
+
+<p id="response"></p>
+
+<script>
+function setAnswer(ans) {
+    document.getElementById("answer").value = ans;
+}
+
+// Move "No" button randomly
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+</script>
+
+</body>
+</html>
