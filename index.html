@@ -23,6 +23,7 @@
 
         #noBtn {
             position: absolute;
+            transition: all 0.2s ease;
         }
     </style>
 </head>
@@ -32,33 +33,29 @@
 <h1>Damayanthy Tea kudike povoma?😁💕</h1>
 
 <form action="https://formspree.io/f/mjgprrqe" method="POST">
-    <input type="hidden" name="answer" id="answer">
+    <input type="hidden" name="answer" id="answer" value="Yes">
 
-    <button type="submit" onclick="setAnswer('Yes')">Povom😊💖</button>
-    <button type="button" id="noBtn">No 😢</button>
+    <!-- YES submits form -->
+    <button type="submit">Povom😊💖</button>
 </form>
 
-<p id="response"></p>
+<!-- NO button outside form -->
+<button type="button" id="noBtn">No 😢</button>
 
 <!-- Sound -->
-<audio id="runSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
+<audio id="runSound">
+    <source src="https://www.soundjay.com/button/sounds/button-16.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-function setAnswer(ans) {
-    document.getElementById("answer").value = ans;
-}
-
-// No button logic
 const noBtn = document.getElementById("noBtn");
 const sound = document.getElementById("runSound");
 
-let scale = 1;
-
 const messages = [
     "No 😢",
-    "Are you sure? 🥺",
+    "Damayanthy are you sure? 🥺",
     "Think again 😭",
-    "Please?? 🥺",
+    "Damayanthyyyy?? 🥺",
     "Don't do this 😩",
     "Last chance 😳"
 ];
@@ -66,29 +63,20 @@ const messages = [
 let msgIndex = 0;
 
 noBtn.addEventListener("mouseover", function() {
-    // Move randomly
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 
-    // Play sound
     sound.currentTime = 0;
-    sound.play();
+    sound.play().catch(()=>{});
 
-    // Shrink button
-    scale -= 0.1;
-    if (scale < 0.4) scale = 0.4;
-    noBtn.style.transform = `scale(${scale})`;
-
-    // Change text
     msgIndex++;
     if (msgIndex >= messages.length) msgIndex = messages.length - 1;
     noBtn.innerText = messages[msgIndex];
 });
 
-// If user somehow clicks it 😏
 noBtn.addEventListener("click", function() {
     alert("Nice try 😏 You can't say no!");
 });
