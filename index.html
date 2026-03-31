@@ -25,6 +25,13 @@
             position: absolute;
             transition: all 0.2s ease;
         }
+
+        #successMsg {
+            font-size: 24px;
+            color: #ff3399;
+            margin-top: 20px;
+            display: none;
+        }
     </style>
 </head>
 
@@ -32,32 +39,47 @@
 
 <h1>Damayanthy Tea kudike povoma?😁💕</h1>
 
-<form action="https://formspree.io/f/mjgprrqe" method="POST">
-    <input type="hidden" name="answer" id="answer" value="Yes">
+<form id="form" action="https://formspree.io/f/mjgprrqe" method="POST">
+    <input type="hidden" name="answer" value="Yes">
 
-    <!-- YES submits form -->
-    <button type="submit">Povom😊💖</button>
+    <!-- IMPORTANT: prevent instant submit -->
+    <button type="button" onclick="handleYes()">Povom😊💖</button>
 </form>
 
-<!-- NO button outside form -->
+<div id="successMsg">Sandhosham Damayanthy 😍</div>
+
 <button type="button" id="noBtn">No 😢</button>
 
-<!-- Sound -->
 <audio id="runSound">
     <source src="https://www.soundjay.com/button/sounds/button-16.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+function handleYes() {
+    // Show message
+    document.getElementById("successMsg").style.display = "block";
+
+    // Hide buttons
+    document.querySelector("form").style.display = "none";
+    document.getElementById("noBtn").style.display = "none";
+
+    // Submit after 2 seconds
+    setTimeout(function() {
+        document.getElementById("form").submit();
+    }, 2000);
+}
+
+// NO button logic
 const noBtn = document.getElementById("noBtn");
 const sound = document.getElementById("runSound");
 
 const messages = [
     "No 😢",
     "Damayanthy are you sure? 🥺",
-    "Think again 😭",
-    "Damayanthyyyy?? 🥺",
-    "Don't do this 😩",
-    "Last chance 😳"
+    "manese valikidhu lah 😭",
+    "Enne Kathe?? 🥺",
+    "now or never🖤",
+    "Damayanthyyyyy 😁😂"
 ];
 
 let msgIndex = 0;
@@ -78,7 +100,7 @@ noBtn.addEventListener("mouseover", function() {
 });
 
 noBtn.addEventListener("click", function() {
-    alert("Nice try 😏 You can't say no!");
+    alert("Damayanthy Patiyaa😏");
 });
 </script>
 
