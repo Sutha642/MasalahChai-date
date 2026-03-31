@@ -29,7 +29,7 @@
 
 <body>
 
-<h1>Damayanthy Tea kudike povom?😁💕</h1>
+<h1>Damayanthy Tea kudike povoma?😁💕</h1>
 
 <form action="https://formspree.io/f/mjgprrqe" method="POST">
     <input type="hidden" name="answer" id="answer">
@@ -40,20 +40,57 @@
 
 <p id="response"></p>
 
+<!-- Sound -->
+<audio id="runSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
+
 <script>
 function setAnswer(ans) {
     document.getElementById("answer").value = ans;
 }
 
-// Move "No" button randomly
+// No button logic
 const noBtn = document.getElementById("noBtn");
+const sound = document.getElementById("runSound");
+
+let scale = 1;
+
+const messages = [
+    "No 😢",
+    "Damayanthy are you sure? 🥺",
+    "Think again 😭",
+    "Damayanthyyyy?? 🥺",
+    "Don't do this 😩",
+    "Last chance 😳"
+];
+
+let msgIndex = 0;
 
 noBtn.addEventListener("mouseover", function() {
+    // Move randomly
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 50);
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
+
+    // Play sound
+    sound.currentTime = 0;
+    sound.play();
+
+    // Shrink button
+    scale -= 0.1;
+    if (scale < 0.4) scale = 0.4;
+    noBtn.style.transform = `scale(${scale})`;
+
+    // Change text
+    msgIndex++;
+    if (msgIndex >= messages.length) msgIndex = messages.length - 1;
+    noBtn.innerText = messages[msgIndex];
+});
+
+// If user somehow clicks it 😏
+noBtn.addEventListener("click", function() {
+    alert("Nice try 😏 You can't say no!");
 });
 </script>
 
